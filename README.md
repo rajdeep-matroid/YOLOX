@@ -201,7 +201,7 @@ Similar to YOLOv5, you can combine sparsification with the above optimization me
 **ONNX model for Triton inference**
 
 ```bash
-$ python tools/trt.py -n yolox-s -c yolox_s.pth --decode-in-inference
+$ python tools/trt.py -n yolox-s -c yolox_s.pth --decode-in-inference --use-onnx --input images --output output
 ```
 
 A file **temp.onnx** will be generated which can be used for inference on the Triton server.
