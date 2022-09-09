@@ -171,6 +171,41 @@ python -m yolox.tools.train --help
 
 </details>
 
+<details>
+<summary>TensorRT, ONNX and sparsification</summary>
+
+**TensorRT with no optimization**
+
+```bash
+$ python tools/trt.py -n yolox-s -c yolox_s.pth 
+```
+
+**TensorRT with FP16**
+
+```bash
+$ python tools/trt.py -n yolox-s -c yolox_s.pth --fp16
+```
+
+**TensorRT with INT8**
+```bash
+$ python tools/trt.py -n yolox-s -c yolox_s.pth --int8 --calibrate --calib-num-images 200 -cb 4 --calib-algo minmax --seed 20
+```
+
+**TensorRT with sparsification**
+```bash
+$ python tools/trt.py -n yolox-s -c yolox_s.pth --sparsify --prop 0.1 [--struct]
+```
+
+Similar to YOLOv5, you can combine sparsification with the above optimization methods as desired.
+
+**ONNX model for Triton inference**
+
+```bash
+$ python tools/trt.py -n yolox-s -c yolox_s.pth --decode-in-inference --use-onnx --input images --output output
+```
+
+A file **temp.onnx** will be generated which can be used for inference on the Triton server.
+</details>
 
 <details>
 <summary>Evaluation</summary>
